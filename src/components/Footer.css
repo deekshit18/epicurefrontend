@@ -1,0 +1,22 @@
+
+/* background: #172940;
+    color: #a2b5cd;
+        border-bottom: 2px solid #3a4f6a;
+
+ */
+
+/* Add these styles to your CSS file */
+li {
+    margin-bottom: 8px;
+  }
+  
+  a ,Link {
+    color: #ffffff !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease; /* Adding transition for a smooth hover effect */
+  }
+  
+  Link, a:hover {
+    color: #030201 !important; /* Change the color to your desired hover color */
+  }
+  

@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Archivo+Narrow&family=Audiowide&family=Big+Shoulders+Inline+Text:wght@100;200;600&family=Bungee+Spice&family=Caveat&family=Cinzel&family=Josefin+Sans&family=Merriweather:wght@300&family=Nosifer&family=Open+Sans:wght@300&family=Orbitron:wght@500&family=Rajdhani&family=Reem+Kufi+Ink&family=Roboto&family=Sacramento&family=Sedgwick+Ave+Display&family=Skranji&family=Special+Elite&family=Yellowtail&display=swap');
+
+.nl{
+  color: aliceblue;
+}
+h1{
+  font-family:"Orbitron" ;
+}
+/* p{
+  font-family: "Caveat";
+} */
+
+.nav{
+	background-color: "#0076CE";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.food{
+  transition: transform 0.9s ease; /* Adding transition for a subtle hover effect */
+  transform: scale(.8);
+
+} 
+.food:hover {
+  transform: scale(1); /* Increase image size on hover */
+}
+.cimg{
+  transition: transform 0.9s ease; /* Adding transition for a subtle hover effect */
+}
+.cimg:hover {
+  transform: scale(1.5); /* Increase image size on hover */
+}
+.cbd:hover {
+  background-color: #0076CE;
   color: white;
-}
 
-.App-link {
-  color: #61dafb;
 }
+.vrec{
+        color:#0076CE !important;
+  text-decoration: none !important;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  transition: color 0.3s ease; /* Adding transition for a smooth hover effect */
 }
+  
+    .vrec:hover {
+      color: #030201 !important;  
+
+  }
+
+
+
+
+

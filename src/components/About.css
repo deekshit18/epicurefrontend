@@ -1,0 +1,45 @@
+/* About.css */
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Archivo+Narrow&family=Audiowide&family=Big+Shoulders+Inline+Text:wght@100;200;600&family=Bungee+Spice&family=Caveat&family=Cinzel&family=Josefin+Sans&family=Merriweather:wght@300&family=Nosifer&family=Open+Sans:wght@300&family=Orbitron:wght@500&family=Rajdhani&family=Reem+Kufi+Ink&family=Roboto&family=Sacramento&family=Sedgwick+Ave+Display&family=Skranji&family=Special+Elite&family=Yellowtail&display=swap');
+p{
+  font-family:Verdana, Geneva, Tahoma, sans-serif ;
+}
+
+
+h1{
+color: black;
+}
+
+.about-image {
+  width: 100%; /* Make sure images take 100% width of their container */
+  transition: transform 0.9s ease; /* Adding transition for a subtle hover effect */
+}
+
+.about-image:hover {
+  transform: scale(.8); /* Increase image size on hover */
+}
+.colu{
+  transition: transform 0.9s ease; /* Adding transition for a subtle hover effect */
+
+} 
+.colu:hover {
+  transform: scale(.8); /* Increase image size on hover */
+}
+
+/* Typewriter Animation */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  animation: typewriter 3s steps(40) 1s infinite both; /* Adjust the animation duration and timing function as needed */
+}
+/*  */
+
