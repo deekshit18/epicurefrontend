@@ -3,17 +3,10 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { styled } from '@mui/system';
 import Swal from 'sweetalert2';
 import { editprofile } from '../services/allapi';
 import backg from "../back2.jpg";
 
-// const StyledBox = styled(Box)({
-
-//   height: '100vh',
-//   backgroundImage: "url('https://www.pngmagic.com/product_images/blue-3d-background-hd.jpg')",
-//   backgroundSize: 'cover',
-// });
 
 function Forgot() {
   const [userdetails, setuserdetails] = useState({});
@@ -30,7 +23,7 @@ function Forgot() {
   }, []);
 
   const handlePasswordChange = async () => {
-    const { username, email, oldPassword, newPassword, profile } = userdata;
+    const {  oldPassword, newPassword } = userdata;
 
     if (!oldPassword || !newPassword) {
       Swal.fire({

@@ -18,7 +18,6 @@ import backg from "../back2.jpg";
 function Profile() {
   const { editresppcon, seteditrespcon } = useContext(editresrespcon);
 
-  const navigate = useNavigate();
 
   // const logout = () => {
   //   sessionStorage.removeItem("token");
