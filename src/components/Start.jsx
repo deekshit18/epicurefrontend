@@ -2,10 +2,15 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import hmgif from '../giphy (2).gif'
 import { Link } from 'react-router-dom'
+import Header from './Header'
+import Footer from './Footer'
 
-function Start() {
+function Start({log}) {
   return (
-    <div>  <div className='bg-info' style={{width:"100%"}}>
+    <>         
+    {/* bgs */}
+      <Header log={log}/>
+    <div className='' style={{width:"100%"}}>
     <Container>
   <Row className='align-items-center'>   <Col sm={12} md={4}>
         
@@ -21,7 +26,7 @@ function Start() {
 </p>
 <a href='#cat'>
         <Link to={"/register"}>
-          <button type="button" style={{backgroundColor: "#0076CE"}}  class="btn text-light" fdprocessedid="44phzq">          Get Started <i class="fa-solid fa-arrow-right"></i>
+          <button type="button"   class="bn5" fdprocessedid="44phzq">          Get Started <i class="fa-solid fa-arrow-right"></i>
     </button>
         </Link>
   
@@ -33,7 +38,8 @@ function Start() {
 </Container>
 
 
-</div></div>
+</div>  <Footer/>
+</>
   )
 }
 

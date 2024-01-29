@@ -1,57 +1,104 @@
-import React from 'react'
+import React, { useContext } from 'react';
+import { Container, Grid, Typography, Divider } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Feedback from './Feedback';
+import { isauthtokencontext } from '../context/Contextshare';
+
+import icon from '../log2.png';
 import './Footer.css';
 
-import icon from '../logonew1.png'
+function Footer() {
+  // const { istokenres } = useContext(isauthtokencontext);
+  const {istokenres,setistokenres}=useContext(isauthtokencontext)
 
-    import { Container, Row, Col } from 'react-bootstrap';
-    import { Link } from 'react-router-dom'; // Make sure to import Link from react-router-dom if you're using it for navigation
-    
-    function Footer() {
-        return (
-        <footer className=" text-dark py-5" style={{backgroundColor: "#0076CE"}}>
-          <Container>
-            <Row>
-              {/* Logo and Quote */}
-              <Col lg={3} md={6} sm={12}>
-                <img src={icon} alt="EpicureHub Logo" className="img-fluid mb-3" />
-              </Col>
-    <Col></Col>
-              {/* Pages List */}
-              <Col lg={3} md={6} sm={12}>
-                <h5>Pages</h5>
-                <ul className="list-unstyled ">
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/recipes">Recipes</Link></li>
-                  <li><Link to="/addrecipe">Chefs</Link></li>
-                  <li><Link to="/contact">Contact</Link></li>
-                </ul>
-              </Col>
-    
-              {/* Contact Information */}
-              <Col lg={3} md={6} sm={12}>
-            <h5>Contact Us</h5>
-            <ul className="list-unstyled contact-list">
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="mailto:Epicurehub@example.com">Epicurehub@example.com</a></li>
-              <li><a href="tel:+123456789">tel:+123456789</a></li>
-            </ul>
-          </Col>
+  return (
+    <footer className="foot text-dark py-5">
+      <Container>
+        <Grid container spacing={3}>
+          {/* Logo */}
+          <Grid item xs={12} lg={12}>
+            <img src={icon} alt="EpicureHub Logo" className="img-fluid mb-3 w-25" />
+          </Grid>
 
-            </Row>
-    
-            {/* Horizontal Rule */}
-            <hr className="mt-4 mb-3" />
-    
-            {/* Copyright */}
-            <Row>
-              <Col>
-                <p className="text-center text-dark">&copy; 2023 EpicureHub. All Rights Reserved.</p>
-              </Col>
-            </Row>
-          </Container>
-        </footer>
-      )
+         {istokenres?
+         <>
+            <Divider orientation="vertical" flexItem sx={{ backgroundColor: '#fff', height: '100%' }} />
+  
+            <Grid item xs={12} lg={3}>
+              <Typography variant="h5" className='m-1'>Pages</Typography>
+              <ul className="list-unstyled p-1">
+                <li>
+                  <Link to="/" className="text-light">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/recipes" className="text-light">
+                    Recipes
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/addrecipe" className="text-light">
+                    Chefs
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-light">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </Grid>
+  
+            {/* Contact Information */}
+            <Grid item xs={12} lg={4}>
+              <Typography variant="h5" className='m-1'>Contact Us</Typography>
+              <ul className="list-unstyled contact-list p-1">
+                <li>
+                  <a href="#" className="text-light">
+                    Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-light">
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:Epicurehub@example.com" className="text-light">
+                    Epicurehub@example.com
+                  </a>
+                </li>
+                <li>
+                  <a href="tel:+123456789" className="text-light">
+                    +123456789
+                  </a>
+                </li>
+              </ul>
+            </Grid>
+  
+            {/* // Feedback */}
+              <Grid item xs={12} lg={4}>
+                <Feedback />
+              </Grid></>
+        :null}
+          </Grid>
+  
+          {/* Horizontal Rule */}
+          <Divider className="mt-4 mb-3" />
+         
+
+        {/* Copyright */}
+        <Grid container justifyContent="center">
+          <Grid item>
+            <Typography variant="body2" align="center" className="text-light">
+              &copy; 2023 EpicureHub. All Rights Reserved.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Container>
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

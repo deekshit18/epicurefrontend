@@ -1,20 +1,30 @@
 import React, { createContext, useState } from 'react'
 
 export const editresrespcon=createContext()
-// export const profilephotoc=createContext()
+export const isauthtokencontext=createContext()
+export const isadmincontext=createContext()
+export const userconc=createContext()
 
 
 function Contextshare({children}) {
     const [editresppcon,seteditrespcon]=useState({})
-    // const [profilephoto,setprofilephoto]=useState(false)
+    const [istokenres,setistokenres]=useState(false)
+    const [isadminres,setisadminres]=useState(false)
+    const [userc,setuserc]=useState("")
 
   return (
     <>
     <editresrespcon.Provider value={{editresppcon,seteditrespcon}}>
-    {/* <profilephotoc.Provider value={{profilephoto,setprofilephoto}}> */}
+    <isauthtokencontext.Provider value={{istokenres,setistokenres}}>
+    <isadmincontext.Provider value={{isadminres,setisadminres}}>
+    <userconc.Provider value={{userc,setuserc}}>
 
 {children}
-{/* </profilephotoc.Provider> */}
+</userconc.Provider>
+
+</isadmincontext.Provider>
+</isauthtokencontext.Provider>
+
     </editresrespcon.Provider>
     
     </>

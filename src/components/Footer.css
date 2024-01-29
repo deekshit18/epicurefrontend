@@ -9,14 +9,18 @@
 li {
     margin-bottom: 8px;
   }
-  
-  a ,Link {
-    color: #ffffff !important;
+  .foot{
+    /* background-image: linear-gradient(to right, rgb(55, 65, 81), rgb(17, 24, 39), rgb(0, 0, 0)); */
+background-image: url('https://www.pngmagic.com/product_images/light-blue-3d-background.jpg');
+  }
+  a  {
+
     text-decoration: none !important;
     transition: color 0.3s ease; /* Adding transition for a smooth hover effect */
   }
   
-  Link, a:hover {
-    color: #030201 !important; /* Change the color to your desired hover color */
+   a:hover {
+    color: #100e0e !important;
+
   }
   

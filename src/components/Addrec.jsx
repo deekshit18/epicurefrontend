@@ -3,7 +3,8 @@ import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import Arheader from './Arheader';
 import { addrecipe } from '../services/allapi';
 import Swal from 'sweetalert2';
-
+import Pheader from './Pheader';
+import itemimg from '../itempreview.png'
 function Addrec() {
   const [preview,setPreview]=useState("")
   const [token,setToken]=useState("")
@@ -118,7 +119,7 @@ useEffect(()=>{
 },[])
   return (
    <>
-      <Arheader/>
+      <Pheader/>
       <Container className='mt-5'>
       <div className='rounded' style={{ border: '2px solid #FF0000', padding: '10px' }}>
           <Row className="mt-2 mb-3" style={{ borderBottom: '2px solid #FF0000'}}>
@@ -133,7 +134,7 @@ useEffect(()=>{
             <Col md={4}>
             <label htmlFor="foodpo">
             <input id="foodpo" type="file" style={{display:'none'}} onChange={(e)=>setrecipedata({...recipedata,fimage:e.target.files[0]})} />
-            <img src={preview?preview:"https://images.pexels.com/photos/1860208/pexels-photo-1860208.jpeg?cs=srgb&dl=cooked-food-1860208.jpg&fm=jpg" }className='w-100' alt="" />
+            <img src={preview?preview:itemimg }className='w-100' style={{height:"220px"}} alt="" />
             </label>
               {/* <Form.Group controlId="formImage">
                 <Form.Label>Image</Form.Label>

@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import icon from '../recipes.png';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import Sidebar from './Sidebar';
 
 function Rheader() {
-  const [showOffcanvas, setShowOffcanvas] = useState(false);
+  // const [showOffcanvas, setShowOffcanvas] = useState(false);
 
-  const handleToggle = () => {
-    setShowOffcanvas(!showOffcanvas);
-  };
+  // const handleToggle = () => {
+  //   setShowOffcanvas(!showOffcanvas);
+  // };
 
   return (
     <>
-      <Navbar style={{ backgroundColor: "#FFD700" }} className="d-flex justify-content-center nav">
+      <Navbar style={{ backgroundColor: "#FFD700" }} className="d-flex justify-content-center recbg">
+
+      <Sidebar/>
+
         <Container>
           <Navbar.Brand className='mx-auto' href="#">
             <img
@@ -24,22 +26,14 @@ function Rheader() {
               height="70"
               className="d-inline-block align-top"
             />
-          </Navbar.Brand>
-          <Button variant="outline-light" onClick={handleToggle} className="me-2">
+          </Navbar.Brand>        </Container>
+
+          {/* <Button variant="outline-light" onClick={handleToggle} className="me-2">
             Toggle
-          </Button>
-        </Container>
+          </Button> */}
       </Navbar>
 
-      <Offcanvas show={showOffcanvas} onHide={handleToggle}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          {/* Add your offcanvas content here */}
-          Offcanvas content goes here.
-        </Offcanvas.Body>
-      </Offcanvas>
+      
     </>
   );
 }

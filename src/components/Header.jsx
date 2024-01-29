@@ -1,11 +1,14 @@
 import React from 'react'
-import icon from '../logonew1.png'
+import icon from '../log2.png'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-function Header() {
+import Sidebar from './Sidebar';
+function Header({log}) {
   return (
-    <Navbar style={{backgroundColor: "#0076CE"}} className="d-flex justify-content-center nav">
-    <Container>
+    <Navbar className="d-flex nav justify-content-center" style={{backgroundImage:"url('')"}}>
+{  
+log&&<Sidebar/>
+}    <Container>
       <Navbar.Brand className='mx-auto ' href="#">
         <img
           alt="Logo"

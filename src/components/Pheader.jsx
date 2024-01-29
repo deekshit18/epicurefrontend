@@ -2,9 +2,12 @@ import React from 'react'
 import icon from '../log2.png'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-function Arheader() {
+import Sidebar from './Sidebar';
+function Pheader() {
   return (
-    <Navbar style={{backgroundColor: "#FF0000"}} className="d-flex justify-content-center nav">
+    <Navbar className="d-flex  justify-content-center">
+
+<Sidebar/>
     <Container>
       <Navbar.Brand className='mx-auto ' href="#">
         <img
@@ -23,4 +26,4 @@ function Arheader() {
     }
     
 
-export default Arheader
+export default Pheader

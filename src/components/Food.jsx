@@ -23,14 +23,14 @@ gethomerecipe()
 },[])
 
   return (
-    <><div className='mb-3'>
+    <><div className='mb-3 '>
         
       <Container >
-      <Link className='vrec' to='/items'><h1 className='text-center'>View Recipes</h1></Link>
-      <Row>
+         <Row className='fdd rounded'>
 
       {hrecipe?.length>0?
       hrecipe.map((item)=>(
+
         <Col xs={12} md={4}>
 
       <Card className='food'>
@@ -40,7 +40,12 @@ gethomerecipe()
               </Card.Body>
             </Card>
 
-            </Col>)):null}
+            </Col>       
+)):null}
+ <Link className='text-light text-end p-3' to='/items'> 
+<strong className='text-light text-end p-3'>View More ></strong>        </Link>
+
+ </Row>
       {/* <Col xs={12} md={4}>
 
       <Card className='food'>
@@ -61,7 +66,6 @@ gethomerecipe()
             </Card>
 
             </Col> */}
-        </Row>
       </Container>
 
     

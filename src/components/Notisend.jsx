@@ -1,32 +1,29 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import { sendmessage } from '../services/allapi';
 import Swal from 'sweetalert2';
-import { isadmincontext } from '../context/Contextshare';
 
-function Message({ resp, usp }) {
-  const { isadminres, setisadminres } = useContext(isadmincontext);
-
-
+function Notisend() {
   const [showModal, setShowModal] = useState(false);
+  const [userdetails,setuserdetails]=useState({})
+
   const [messages, setMessages] = useState({
     message: "",
-    sender: usp.email,
-    receiver: resp,
+    sender: userdetails.email,
+    receiver:"",
     time: "",
     date: "",
   });
-
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
   useEffect(() => {
     // Load user details from sessionStorage
-    const userdetails = JSON.parse(sessionStorage.getItem("existinguser"));
+     setuserdetails(JSON.parse(sessionStorage.getItem("existinguser")))
     if (userdetails) {
       setMessages((prevMessages) => ({
         ...prevMessages,
-        sender: userdetails.username,
+        sender: userdetails.email,
       }));
     }
   }, []);
@@ -43,21 +40,13 @@ function Message({ resp, usp }) {
   
     const ndate = `${day}-${month}-${year}`;
     const ntime = `${hour}:${minute}:${second}`;
-    const { message, receiver } = messages;
-
+  
     try {
-      if (!message || !receiver) {
-        Swal.fire('Fill All TextBox!');
-      } else {
-        if (receiver === usp.email) {
-          Swal.fire('Thats Your Post');
-        }
-      else{const result = await sendmessage({
+      const result = await sendmessage({
         ...messages,
         time: ntime,
         date: ndate,
-        sender: usp.email,
-        receiver: resp, // Add the receiver field
+        sender: userdetails.email// Add the receiver field
       });
   
       if (result.status === 200) {
@@ -72,7 +61,7 @@ function Message({ resp, usp }) {
           icon: 'error',
         });
         console.log(result.response.data);
-      }}}
+      }
     } catch (error) {
       console.error('Error sending message:', error);
     }
@@ -81,16 +70,21 @@ function Message({ resp, usp }) {
   
   return (
     <>
-      {isadminres?
-      <i class="fa-regular fs-4 fa-message text-danger" onClick={handleShow}></i> :<Button className='btn m-3' style={{ backgroundColor: "#D2122E" }} onClick={handleShow}>
-        Ask Doubts
-      </Button>}
+      <Button className='btn ms-auto' style={{ backgroundColor: "#D2122E" }} onClick={handleShow}>
+        Message
+      </Button>
 
       <Modal show={showModal} onHide={handleClose} centered>
+        {/* ... (rest of the Modal component) */}
         <Modal.Body style={{ border: '2px solid #FFD700', padding: '10px' }}>
           <Form>
             <Form.Group controlId="formTextarea">
-              <Form.Label style={{ color: "#D2122E" }}>Send To : {resp}</Form.Label>
+              <Form.Label style={{ color: "#D2122E" }}><div class="form-group">
+  <label class="col-form-label col-form-label-sm mt-4" for="inputSmall">Send To:</label>
+  <input class="form-control form-control-sm" type="text" placeholder="Reciver's Email" id="inputSmall"   value={messages.receiver}
+                onChange={(e) => setMessages({ ...messages, receiver: e.target.value })}/>
+</div>
+</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={5}
@@ -113,4 +107,4 @@ function Message({ resp, usp }) {
   );
 }
 
-export default Message;
+export default Notisend

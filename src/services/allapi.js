@@ -60,3 +60,12 @@ export const allmessage=async(reqheader)=>{
   //query parameter=path?key
     return  await commonapi('GET',`${BASEURL}/message/allmessage`,"",reqheader)
   }
+  //delete mesg
+export const deletemessage=async(messageid,reqheader)=>{
+  return  await commonapi('DELETE',`${BASEURL}/message/remove/${messageid}`,{},reqheader)
+}
+//useralll
+export const alluser=async(reqheader)=>{
+  //query parameter=path?key
+    return  await commonapi('GET',`${BASEURL}/user/alluser`,"",reqheader)
+  }

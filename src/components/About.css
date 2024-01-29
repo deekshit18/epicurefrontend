@@ -12,16 +12,20 @@ color: black;
 .about-image {
   width: 100%; /* Make sure images take 100% width of their container */
   transition: transform 0.9s ease; /* Adding transition for a subtle hover effect */
+  transform: scale(.8); /* Increase image size on hover */
+
 }
 
 .about-image:hover {
-  transform: scale(.8); /* Increase image size on hover */
+  transform: scale(1); /* Increase image size on hover */
 }
-.colu{
+.rw{
   transition: transform 0.9s ease; /* Adding transition for a subtle hover effect */
+  background-image: linear-gradient(to bottom right,#A5B4FC,#60A5FA,#A855F7);
 
+  
 } 
-.colu:hover {
+.rw:hover {
   transform: scale(.8); /* Increase image size on hover */
 }
 
