@@ -109,10 +109,10 @@ console.log(uspp);
         </Grid>
   
         {/* User Cards */}
-          <Grid container spacing={2} className='m-2'>
+          <Grid container spacing={2} className=''>
           {filteredUsers
               .filter(user => user.email !== 'epicurehub@gmail.com') // Exclude admin user
-              .map((user) => (            <Grid item key={user.id} xs={12} sm={6} md={4} lg={2} data-aos="fade-up"
+              .map((user) => (            <Grid item key={user.id} xs={12} sm={6} md={4} lg={3} data-aos="fade-up"
              
       >
                 <Card>
