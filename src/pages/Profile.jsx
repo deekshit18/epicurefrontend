@@ -3,7 +3,6 @@ import { Container, Row, Col, Image, Button, Card } from 'react-bootstrap';
 import { deleterecipe, editprofile, userrecipe } from '../services/allapi';
 import { BASEURL } from '../services/baseurl';
 import Swal from 'sweetalert2';
-import {  useNavigate } from 'react-router-dom';
 import Updaterc from '../components/Updaterc';
 import { editresrespcon } from '../context/Contextshare';
 import Messagebox from '../components/Messagebox';
@@ -236,7 +235,7 @@ function Profile() {
           ))
         ) : (
 <div className='text-center'>
-            <p className="card-text text-danger fs-3">No Posts Uploaded!!</p><img src={empty} alt="" />
+            <p className="card-text text-danger fs-3">No Posts Uploaded!!</p><img src={empty} style={{width:"300px"}} alt="" />
   
 </div>        )}
       </Container>

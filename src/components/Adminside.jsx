@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import icon from "../log2.png";
 import {
   Grid,
   AppBar,
@@ -35,7 +36,13 @@ function Adminside() {
             <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleToggleSidebar} sx={{ mr: 2 }}>
               <Menu />
             </IconButton>
-            <Typography variant="h6">Admin</Typography>
+            <Typography className='ms-auto'><img
+          alt="Logo"
+          src={icon}
+          width="100%"
+          height="50"
+          className="d-inline-block align-top"
+        /></Typography>
             {/* Replace the following IconButton with your actual component */}
             <IconButton color="inherit" sx={{ ml: 'auto' }}>
               <Messagebox />

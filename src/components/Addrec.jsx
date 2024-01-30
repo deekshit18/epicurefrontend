@@ -90,12 +90,14 @@ if (token) {
 console.log("result: ",result);
 
   if (result.status===200) {
-      console.log(result.data);    
-      Swal.fire(
-        'Added Successfully!',
-        
-        'success'
-      ) 
+      console.log(result.data);   
+      Swal.fire({
+        icon: 'success',
+        title: 'Recipe Posted',
+        text: 'Successfully',
+      });   
+     
+      clearall() 
   }
   else{
     Swal.fire({

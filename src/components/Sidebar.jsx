@@ -3,6 +3,8 @@ import { Button, Offcanvas, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import { BASEURL } from '../services/baseurl';
+import nopro from '../noprof.png'
+import backg from "../back2.jpg";
 
 function Sidebar() {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
@@ -20,7 +22,7 @@ function Sidebar() {
         <i className="fa-solid fa-list"></i>
       </Button>
 
-      <Offcanvas show={showOffcanvas} onHide={handleToggle} style={{backgroundImage: "url('https://www.pngmagic.com/product_images/blue-3d-background-hd.jpg')"}}>
+      <Offcanvas show={showOffcanvas} onHide={handleToggle} style={{backgroundImage: `url(${backg})`}}>
         <Offcanvas.Header className='' closeButton>
           <Offcanvas.Title>EPICUREHUB</Offcanvas.Title>
         </Offcanvas.Header>
@@ -29,7 +31,7 @@ function Sidebar() {
           <div className="text-center text-light">
             <Link className='text-light' to="/profile">
               <Image
-                src={userdetails.profile ? `${BASEURL}/uploads/${userdetails.profile}` : "https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png"}
+                src={userdetails.profile ? `${BASEURL}/uploads/${userdetails.profile}` : nopro}
                 alt="Profile"
                 roundedCircle
                 className=""

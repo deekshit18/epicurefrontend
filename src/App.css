@@ -775,3 +775,6 @@ strong,p{
 .text-darkk:hover {
   color: #000b0f !important;  /* Light Blue color on hover */
 }
+.invalid-feedback{
+  color: rgba(92, 87, 87, 0.909);
+}

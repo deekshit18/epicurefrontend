@@ -9,7 +9,7 @@ import { isauthtokencontext } from '../context/Contextshare';
 
 function Authentication({ reg }) {
   const { istokenres, setistokenres } = useContext(isauthtokencontext);
-const [cpass,setcpass]=useState('')
+  const [cpass, setcpass] = useState('');
   const [userdata, setUserdata] = useState({
     username: '',
     email: '',
@@ -19,25 +19,46 @@ const [cpass,setcpass]=useState('')
 
   const registerform = reg ? true : false;
 
+  const isEmailValid = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const isPasswordValid = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const isUsernameValid = (username) => {
+    const usernameRegex = /^[a-zA-Z0-9_]{3,20}$/;
+    return usernameRegex.test(username);
+  };
+
   const handlechange = async (e) => {
     e.preventDefault();
     const { username, email, password } = userdata;
-    if (!username || !email || !password) {
+    if (!isUsernameValid(username) || !isEmailValid(email) || !isPasswordValid(password)) {
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Please Fill The Form!',
+        title: 'Invalid Input!',
+        text: 'Please enter valid details.',
       });
-    }else {if (password!==cpass) {
+    } else if (password !== cpass) {
       Swal.fire({
         icon: 'info',
         title: 'Oops...',
-        text: 'Passwords do not match! please ensure they are identical!',
+        text: 'Passwords do not match! Please ensure they are identical.',
       });
-    }  else {
+    } else {
       const result = await registerAPI(userdata);
       if (result.status === 200) {
-        Swal.fire('Successfully Registered!', 'success');
+        // Swal.fire({
+        //   icon: 'success',
+        //   title: `Hello, ${result.response.data.name}! You have successfully logged in to EpicureHub`,
+        //   text: 'Enjoy your culinary journey!',
+        // }); 
+
+
         setUserdata({
           username: '',
           email: '',
@@ -51,23 +72,32 @@ const [cpass,setcpass]=useState('')
           title: result.response.data,
         });
       }
-    }}
+    }
   };
 
   const handlelogin = async (e) => {
     e.preventDefault();
+    setTouchedInputs({
+      username: true,
+      email: true,
+      password: true,
+      confirmPassword: true,
+    });
     const { email, password } = userdata;
-    if (!email || !password) {
+    if (!isEmailValid(email) || !isPasswordValid(password)) {
       Swal.fire({
         icon: 'info',
-        title: 'Oops...',
-        text: 'Please Fill The Form!',
+        title: 'Invalid Input!',
+        text: 'Please enter valid details.',
       });
-    }else {
+    } else {
       const result = await loginAPI(userdata);
       if (result.status === 200) {
-        Swal.fire('Login Successfully!', 'success');
-        setistokenres(true);
+        Swal.fire({
+          icon: 'success',
+          title: `Hello, ${result.data.existinguser.username}! `,
+          text: 'You have successfully logged in to EpicureHub',
+        });         setistokenres(true);
         // Store data
         sessionStorage.setItem('existinguser', JSON.stringify(result.data.existinguser));
         sessionStorage.setItem('token', result.data.token);
@@ -76,7 +106,7 @@ const [cpass,setcpass]=useState('')
           email: '',
           password: '',
         });
-        setcpass('')
+        setcpass('');
         // Navigate to home
         navigate('/');
       } else {
@@ -91,15 +121,25 @@ const [cpass,setcpass]=useState('')
   const boxStyle = {
     borderRadius: '15px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-
-    backgroundImage: "linear-gradient(180deg,#04e2f7, #1448d8)"
-
+    backgroundImage: 'linear-gradient(180deg,#04e2f7, #1448d8)',
   };
+  const [touchedInputs, setTouchedInputs] = useState({
+    username: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
+
+  // ... (previous code)
+
+ 
+
+  // ... (previous code)
 
   return (
-    <div className="vh-100 regbg d-flex align-items-center justify-content-center" style={{ }}>
+    <div className="regbg d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
       <Container fluid className="d-flex align-items-center justify-content-center">
-        <Row className="container w-75 p-3" style={boxStyle}>
+        <Row className="container w-100 p-3" style={boxStyle}>
           <Col md={6} className="d-flex align-items-center justify-content-center">
             {registerform ? (
               <Image style={{ width: '100%' }} src={register} alt="Image" />
@@ -110,68 +150,86 @@ const [cpass,setcpass]=useState('')
 
           <Col md={6} className="d-flex flex-column align-items-center justify-content-center">
             <h1 className="text-dark">EPICUREHUB</h1>
-            <h6 className="text-light">
-              {registerform
-                ? 'Sign Up to your Account'
-                : 'Sign into Account'}
-            </h6>
+            <h6 className="text-light">{registerform ? 'Sign Up to your Account' : 'Sign into Account'}</h6>
 
-            <div class="form-group w-75">
+            <div className="form-group w-75">
               {registerform && (
                 <>
-                  <div class="form-floating mb-3">
+                  <div className={`form-floating mb-3 ${touchedInputs.username && !isUsernameValid(userdata.username) ? 'focused' : ''}`}>
                     <input
                       type="text"
-                      class="form-control"
+                      className={`form-control ${(!isUsernameValid(userdata.username) && touchedInputs.username) ? 'is-invalid' : ''}`}
                       id="floatingInput"
                       placeholder="Username"
                       style={{ width: '100%', borderRadius: '5px' }}
                       value={userdata.username}
                       onChange={(e) => setUserdata({ ...userdata, username: e.target.value })}
+                      onFocus={() => setTouchedInputs({ ...touchedInputs, username: true })}
                     />
-                    <label for="floatingInput">Username</label>
+                    <label htmlFor="floatingInput">Username</label>
+                    {(touchedInputs.username && !isUsernameValid(userdata.username)) && (
+                      <div className="invalid-feedback">Username must be alphanumeric, 3-20 characters.</div>
+                    )}
                   </div>
                 </>
               )}
 
-              <div class="form-floating mb-3">
+              <div className={`form-floating mb-3 ${touchedInputs.email && !isEmailValid(userdata.email) ? 'focused' : ''}`}>
                 <input
                   type="email"
-                  class="form-control"
+                  className={`form-control ${(!isEmailValid(userdata.email) && touchedInputs.email) ? 'is-invalid' : ''}`}
                   id="floatingInput"
                   placeholder="name@example.com"
                   style={{ width: '100%', borderRadius: '5px' }}
                   value={userdata.email}
                   onChange={(e) => setUserdata({ ...userdata, email: e.target.value })}
+                  onFocus={() => setTouchedInputs({ ...touchedInputs, email: true })}
                 />
-                <label for="floatingInput">Email address</label>
+                <label htmlFor="floatingInput">Email address</label>
+                {(touchedInputs.email && !isEmailValid(userdata.email)) && (
+                  <div className="invalid-feedback">Enter a valid email address.</div>
+                )}
               </div>
-              <div class="form-floating mb-3">
+
+              <div className={`form-floating mb-3 ${touchedInputs.password && !isPasswordValid(userdata.password) ? 'focused' : ''}`}>
                 <input
                   type="password"
-                  class="form-control"
+                  className={`form-control ${(!isPasswordValid(userdata.password) && touchedInputs.password) ? 'is-invalid' : ''}`}
                   id="floatingPassword"
                   placeholder="Password"
-                  autocomplete="off"
+                  autoComplete="off"
                   style={{ width: '100%', borderRadius: '5px' }}
                   value={userdata.password}
                   onChange={(e) => setUserdata({ ...userdata, password: e.target.value })}
+                  onFocus={() => setTouchedInputs({ ...touchedInputs, password: true })}
                 />
-                <label for="floatingPassword">Password</label>
+                <label htmlFor="floatingPassword">Password</label>
+                {(touchedInputs.password && !isPasswordValid(userdata.password)) && (
+                  <div className="invalid-feedback">
+                    Password must be at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character.
+                  </div>
+                )}
               </div>
-              {registerform &&   <div class="form-floating">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="floatingPassword"
-                  placeholder="Confirm Password"
-                  autocomplete="off"
-                  style={{ width: '100%', borderRadius: '5px' }}
-                  value={cpass}
-                  onChange={(e) => setcpass(e.target.value)}
-                />
-                <label for="floatingPassword">Confirm Password</label>
-              </div>}
+
+              {registerform && (
+                <div className={`form-floating ${touchedInputs.confirmPassword && userdata.password !== cpass ? 'focused' : ''}`}>
+                  <input
+                    type="password"
+                    className={`form-control ${userdata.password !== cpass && touchedInputs.confirmPassword ? 'is-invalid' : ''}`}
+                    id="floatingPassword"
+                    placeholder="Confirm Password"
+                    autoComplete="off"
+                    style={{ width: '100%', borderRadius: '5px' }}
+                    value={cpass}
+                    onChange={(e) => setcpass(e.target.value)}
+                    onFocus={() => setTouchedInputs({ ...touchedInputs, confirmPassword: true })}
+                  />
+                  <label htmlFor="floatingPassword">Confirm Password</label>
+                  {userdata.password !== cpass && touchedInputs.confirmPassword && (
+                    <div className="invalid-feedback">Passwords do not match.</div>
+                  )}
+                </div>
+              )}
             </div>
 
             {registerform ? (
@@ -179,20 +237,22 @@ const [cpass,setcpass]=useState('')
                 <Button className="mx-auto mt-3 bn642-hover bn26" onClick={handlechange}>
                   Register
                 </Button>
-                <h6 className=" text-light mt-2">
+                <h6 className="text-light mt-2">
                   <span className="text-dark">Already a user ? </span>
-                  <Link to={'/login'} >Click here to Login.</Link>
+                  <Link to={'/login'} className='text-light'>Click here to Login.</Link>
                 </h6>
               </div>
             ) : (
               <div className="w-75">
-                <Button className="mt-3 mx-auto bn642-hover bn26"  type="submit" onClick={handlelogin}>
+                <Button className="mt-3 mx-auto bn642-hover bn26" type="submit" onClick={handlelogin}>
                   Login
                 </Button>
 
-                <h6 style={{color:"black"}}>
+                <h6 style={{ color: 'black' }}>
                   New user?
-                  <Link to={'/register'} className='light ms-1'>Click here to register.</Link>
+                  <Link to={'/register'} className="text-light ms-1">
+                    Click here to register.
+                  </Link>
                 </h6>
               </div>
             )}

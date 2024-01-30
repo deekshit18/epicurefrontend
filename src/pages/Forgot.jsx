@@ -81,7 +81,7 @@ function Forgot() {
         justifyContent="center"
         style={{minHeight: '80vh'}}
       >
-        <Grid item xs={12} md={6} lg={12}>
+        <Grid item xs={12} md={6} lg={12} className='m-1'>
             <Box
               sx={{
                 backgroundColor: 'rgba(255, 255, 255, 0.8)',

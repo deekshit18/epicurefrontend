@@ -82,11 +82,11 @@ function Items() {
   console.log(searchkey);
 
   return (
-    <>
+    <> <div className='xr' style={{backgroundImage: `url(${backg})`,minHeight:"100vh"}}>
 { isadminres?   <Adminside/>:  <Pheader />
 }
       {/* <Container className=''> */}
-    <div className='xr' style={{backgroundImage: `url(${backg})`}}>
+   
           <Row className='mb-5 ' >
             <Col md={4}></Col>
             <Col md={4}>
@@ -100,7 +100,7 @@ function Items() {
           {/* Recipe Cards */}
           <Row className="justify-content-center m-3 ">
             {allrecipes?.length > 0 ? allrecipes?.map((item) => (
-              <Col data-aos="zoom-in" md={3} key={item._id} className='rounded m-4' style={{
+              <Col data-aos="zoom-in" md={3} key={item._id} className='rounded m-4 bg-light' style={{
                 border: '4px solid #FFD700',
                 boxShadow: 'rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset',
               }}>
@@ -170,7 +170,7 @@ function Items() {
               </Col>
             )) : <div>{
               istoken ? <div className='text-center'><p className='text-light fs-4'>Sorry, no such recipes are currently available!</p>
-              <img src={empty} alt="" /></div> : <p className='fs-3 text-danger'>Please login to view more recipes</p>
+              <img src={empty} style={{width:"300px"}} alt="" /></div> : <p className='fs-3 text-danger'>Please login to view more recipes</p>
             }</div>}
           </Row>
   

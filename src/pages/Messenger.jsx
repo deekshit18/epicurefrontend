@@ -99,10 +99,9 @@ function Messenger() {
 
           if (result.status === 200) {
             // Swal.fire('success');
-            // setMessages({
-            //   message: "",
-            //   receiver:""
-            // });
+            setMessages({
+              message: ""
+            });
 
             getallmessage();
           } else {
@@ -157,8 +156,8 @@ isadminres?<Adminside/>:   <Pheader />
 
                   </div>
                 ))
-              ) : (
-                <p>No Receiver Messages</p>
+              ) : (<p></p>
+                // <p>No Message Received</p>
               )}
             </Col>
 
@@ -176,8 +175,8 @@ isadminres?<Adminside/>:   <Pheader />
                     
                   </div>
                 ))
-              ) : (
-                <p>No Sender Messages</p>
+              ) : (<p></p>
+                // <p>No message sent</p>
               )}
             </Col>
           </Row>

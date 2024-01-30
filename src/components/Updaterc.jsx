@@ -64,11 +64,11 @@ const handleupdate=async()=>{
           const result=await editrecipe(id,reqbody,reqheader)
           console.log(result);
           if(result.status==200){
-            Swal.fire(
-                'Added Successfully!',
-                
-                'success'
-              ) 
+            Swal.fire({
+              icon: 'success',
+              title: 'Updated',
+              text: 'Successfully',
+            });   
             //   handleClose()
               seteditrespcon(result.data)
               handleClose1()
@@ -87,11 +87,11 @@ const handleupdate=async()=>{
           console.log(result);
     
     if(result.status==200){
-        Swal.fire(
-            'Added Successfully!',
-            
-            'success'
-          ) 
+      Swal.fire({
+        icon: 'success',
+        title: 'Updated',
+        text: 'Successfully',
+      });   
         //   handleClose()
         seteditrespcon(result.data)
           handleClose1()

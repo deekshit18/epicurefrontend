@@ -31,13 +31,13 @@ function Feedback() {
       if (!message) {
         Swal.fire('Fill in the TextBox!');
       } else {
-        if (uemail === 'admin@gmail.com') {
+        if (uemail === 'epicurehub@gmail.com') {
           Swal.fire('You cannot send a message to yourself.');
         } else {
           const result = await sendmessage({
             message,
             sender: uemail,
-            receiver: 'admin@gmail.com',
+            receiver: 'epicurehub@gmail.com',
             time: ntime,
             date: ndate,
           });

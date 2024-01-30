@@ -9,12 +9,13 @@ function Start({log}) {
   return (
     <>         
     {/* bgs */}
+    <div className='' style={{width:"100%",height:"100vh"}}>
+
       <Header log={log}/>
-    <div className='' style={{width:"100%"}}>
     <Container>
   <Row className='align-items-center'>   <Col sm={12} md={4}>
         
-        <img src={hmgif} alt="" style={{height:"100%"}}/>
+        <img src={hmgif} alt="" style={{width:"70%"}}/>
             </Col>
   
 <Col sm={12} md={2}></Col>
@@ -24,8 +25,8 @@ function Start({log}) {
       <p className='text-light p'>
       "Where Culinary Passion Finds its Hub. Discover, Share, and Savor the Artistry of Food."
 </p>
-<a href='#cat'>
-        <Link to={"/register"}>
+<a href='#cat m-1'>
+        <Link to={"/login"}>
           <button type="button"   class="bn5" fdprocessedid="44phzq">          Get Started <i class="fa-solid fa-arrow-right"></i>
     </button>
         </Link>
@@ -38,7 +39,7 @@ function Start({log}) {
 </Container>
 
 
-</div>  <Footer/>
+ <div className='fixed-bottom'><Footer/></div></div> 
 </>
   )
 }

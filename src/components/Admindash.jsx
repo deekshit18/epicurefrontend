@@ -11,6 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Messagebox from './Messagebox';
 import Logout from './Logout';
+import Adminside from './Adminside';
 
 function Admindash({ recipes, allmesg, users }) {
   useEffect(() => {
@@ -24,7 +25,7 @@ function Admindash({ recipes, allmesg, users }) {
     { name: 'Total Recipes', value: recipes.length },
     { name: 'Total Messages', value: allmesg.length },
     { name: 'Total Users', value: users.length - 1 },
-    { name: 'New Users', value: 5 },
+    { name: 'New Users', value: 1 },
   ];
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -41,99 +42,8 @@ function Admindash({ recipes, allmesg, users }) {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleToggleSidebar} sx={{ mr: 2 }}>
-              <Menu />
-            </IconButton>
-            <Typography variant="h6">Admin Dashboard</Typography>
-            <IconButton color="inherit" sx={{ ml: 'auto' }}>
-              <Messagebox />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </Grid>
-      {/* Sidebar */}
-      <Grid item xs={12} md={3} lg={2}>
-        <Drawer
-          sx={{
-            width: 240,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: 240,
-              boxSizing: 'border-box',
-            },
-            display: { xs: openSidebar ? 'block' : 'none', md: 'block' },
-          }}
-          variant="temporary"
-          anchor="left"
-          open={openSidebar}
-          onClose={handleToggleSidebar}
-        >
-          {/* Profile Section */}
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              p: 2,
-              backgroundColor: (theme) => theme.palette.primary.main,
-            }}
-          >
-            <Avatar
-              alt="Admin"
-              src="/path/to/profile-photo.jpg" 
-              sx={{ width: 64, height: 64, mb: 1 }}
-            />
-            <Typography variant="subtitle1" color="white">
-              Admin
-            </Typography>
-          </Box>
-
-          {/* Navigation Links */}
-          <List>     <Link to="/" className="text-darkk"> 
-          <ListItem button>
-            <ListItemIcon>
-              <Dashboard />
-            </ListItemIcon>
-            <ListItemText primary="Dashboard" />
-          </ListItem>
-        </Link>
-
-        <Link to="/items" className="text-darkk">
-          <ListItem button>
-            <ListItemIcon>
-              <Receipt />
-            </ListItemIcon>
-            <ListItemText primary="All Recipes" />
-          </ListItem>
-        </Link>
-        <Link to="/mesg" className="text-darkk">
-          <ListItem button>
-            <ListItemIcon>
-              <MailOutline />
-            </ListItemIcon>
-            <ListItemText primary="Messages" />
-          </ListItem>
-        </Link>
-        <Divider />
-        <List>
-          <Link to="/adminpro" className="text-darkk">
-            <ListItem button>
-              <ListItemIcon>
-                <PeopleAlt />
-              </ListItemIcon>
-              <ListItemText primary="Users" />
-            </ListItem>
-          </Link>
-
-            </List>
-          </List>
-          <Logout />
-        </Drawer>
-      </Grid>
-
+      
+      <Adminside/>
       {/* Main Content */}
       <Grid item xs={12} md={12} lg={12}>
         <Container>

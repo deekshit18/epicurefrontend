@@ -46,7 +46,7 @@ function Message({ resp, usp }) {
     const { message, receiver } = messages;
 
     try {
-      if (!message || !receiver) {
+      if (!message) {
         Swal.fire('Fill All TextBox!');
       } else {
         if (receiver === usp.email) {
@@ -61,7 +61,7 @@ function Message({ resp, usp }) {
       });
   
       if (result.status === 200) {
-        Swal.fire('success');
+        // Swal.fire('success');
         setMessages({
           message: "",
         });

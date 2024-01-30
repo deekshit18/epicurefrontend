@@ -31,6 +31,7 @@ import Message from '../components/Message';
 import { isadmincontext } from '../context/Contextshare';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Adminside from '../components/Adminside';
 function Allprofiles() {
   const { isadminres, setisadminres } = useContext(isadmincontext);
 
@@ -94,92 +95,10 @@ console.log(uspp);
 <div style={{backgroundImage: `url(${backg})`,minHeight:"100vh"}}>
   
       <Grid container spacing={0} >
-        <Grid item xs={12} >
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton color="inherit" onClick={handleToggleSidebar} sx={{ mr: 2 }}>
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6">Admin Dashboard</Typography>
-              <IconButton color="inherit" sx={{ ml: 'auto' }}>
-                <Messagebox />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-        </Grid>
-  
-        {/* Sidebar */}
-        <Grid item xs={12} md={3} lg={2} className='mt-5'>
-          <Drawer
-            sx={{
-              width: 240,
-              flexShrink: 0,
-              '& .MuiDrawer-paper': {
-                width: 240,
-                boxSizing: 'border-box',
-              },
-              display: { xs: openSidebar ? 'block' : 'none', md: 'block' },
-            }}
-            variant="temporary"
-            anchor="left"
-            open={openSidebar}
-            onClose={handleToggleSidebar}
-          >
-            {/* Profile Section */}
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                p: 2,
-                backgroundColor: (theme) => theme.palette.primary.main,
-              }}
-            >
-              <Avatar alt="Admin" src="/path/to/profile-photo.jpg" sx={{ width: 64, height: 64, mb: 1 }} />
-              <Typography variant="subtitle1" color="white">
-                Admin
-              </Typography>
-            </Box>
-  
-            {/* Navigation Links */}
-            <List>
-              <ListItem button>
-                <ListItemIcon>
-                  <Dashboard />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItem>
-              <Link to="/items" className="text-dark">
-                <ListItem button>
-                  <ListItemIcon>
-                    <Receipt />
-                  </ListItemIcon>
-                  <ListItemText primary="All Recipes" />
-                </ListItem>
-              </Link>
-              <ListItem button>
-                <ListItemIcon>
-                  <MailOutline />
-                </ListItemIcon>
-                <ListItemText primary="Messages" />
-              </ListItem>
-              <Divider />
-              <List>
-                <ListItem button>
-                  <ListItemIcon>
-                    <PeopleAlt />
-                  </ListItemIcon>
-                  <ListItemText primary="Users" />
-                </ListItem>
-              </List>
-              <Logout />
-            </List>
-          </Drawer>
-        </Grid>
-        <Container>
-  
+       <Adminside/>
         {/* Search Input */}
-        <Grid item xs={12} md={9} lg={6}>
+        <Container>
+        <Grid item xs={12} md={9} lg={6} className='m-2 mt-3'>
           <TextField
             label="Search by Email or Username"
             fullWidth
@@ -190,9 +109,9 @@ console.log(uspp);
         </Grid>
   
         {/* User Cards */}
-          <Grid container spacing={2} className='mb-5'>
+          <Grid container spacing={2} className='m-2'>
           {filteredUsers
-              .filter(user => user.email !== 'admin@gmail.com') // Exclude admin user
+              .filter(user => user.email !== 'epicurehub@gmail.com') // Exclude admin user
               .map((user) => (            <Grid item key={user.id} xs={12} sm={6} md={4} lg={2} data-aos="fade-up"
              
       >

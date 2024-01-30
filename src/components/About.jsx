@@ -89,7 +89,7 @@ function About({log}) {
                 Our platform allows chefs to showcase their culinary creations by sharing detailed recipes, fostering a
                 community of food lovers eager to explore and replicate unique dishes.
               </p>
-              <button type="button" className="btn text-light" style={{ backgroundColor: "#000000" }} fdprocessedid="i5gka4">Add Recipes</button>
+              {/* <button type="button" className="btn text-light" style={{ backgroundColor: "#000000" }} fdprocessedid="i5gka4">Add Recipes</button> */}
             </div>
           </Col>
           <Col lg={6} md={12} className="mb-4 mb-lg-0" data-aos='fade-left'>
@@ -104,9 +104,9 @@ function About({log}) {
               <p className="text-light">
                 At EpicureHub's Talent Marketplace, restaurant owners can not only discover and hire talented home chefs to bring a diverse and personalized touch to their menus but also connect with users for special events, parties, and functions, creating a culinary community that goes beyond the traditional hiring experience.
               </p>
-              <Link to="/recipes">
-                <button type="button" className="btn text-light" style={{ backgroundColor: "#000000" }} fdprocessedid="i5gka4">Explore</button>
-              </Link>
+              {/* <Link to="/recipes"> */}
+                {/* <button type="button" className="btn text-light" style={{ backgroundColor: "#000000" }} fdprocessedid="i5gka4">Explore</button> */}
+              {/* </Link> */}
             </div>
           </Col>
           <Col lg={6} md={12} className="mb-4 mb-lg-0" data-aos='fade-right'>
