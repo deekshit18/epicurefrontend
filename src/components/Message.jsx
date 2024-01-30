@@ -68,7 +68,7 @@ function Message({ resp, usp }) {
         handleClose();
       } else {
         Swal.fire({
-          title: result.response.data,
+          title: 'Failed!',
           icon: 'error',
         });
         console.log(result.response.data);

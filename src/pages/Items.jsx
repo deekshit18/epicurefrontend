@@ -10,7 +10,7 @@ import Adminside from '../components/Adminside';
 import Pheader from '../components/Pheader';
 import nopro from '../noprof.png'
 import backg from "../back2.jpg";
-
+import empty from "../empty.png";
 function Items() {
   const { isadminres, setisadminres } = useContext(isadmincontext);
 
@@ -169,7 +169,8 @@ function Items() {
       </Row> */}
               </Col>
             )) : <div>{
-              istoken ? <p>Sorry, no such recipes are currently available</p> : <p className='fs-3 text-danger'>Please login to view more recipes</p>
+              istoken ? <div className='text-center'><p className='text-light fs-4'>Sorry, no such recipes are currently available!</p>
+              <img src={empty} alt="" /></div> : <p className='fs-3 text-danger'>Please login to view more recipes</p>
             }</div>}
           </Row>
   

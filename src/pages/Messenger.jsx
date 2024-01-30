@@ -98,16 +98,16 @@ function Messenger() {
           });
 
           if (result.status === 200) {
-            Swal.fire('success');
-            setMessages({
-              message: "",
-              receiver:""
-            });
+            // Swal.fire('success');
+            // setMessages({
+            //   message: "",
+            //   receiver:""
+            // });
 
             getallmessage();
           } else {
             Swal.fire({
-              title: result.response.data,
+              title: "Failed!",
               icon: 'error',
             });
             console.log(result.response.data);

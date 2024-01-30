@@ -14,6 +14,7 @@ import CountUp from 'react-countup';
 import myrecp from "../my-recipes-logo.png";
 import addpro from "../addpro.png";
 import backg from "../back2.jpg";
+import empty from "../empty.png";
 
 function Profile() {
   const { editresppcon, seteditrespcon } = useContext(editresrespcon);
@@ -234,10 +235,12 @@ function Profile() {
             </Card>
           ))
         ) : (
-          <p className="card-text text-danger">No Posts Uploaded!!</p>
-        )}
+<div className='text-center'>
+            <p className="card-text text-danger fs-3">No Posts Uploaded!!</p><img src={empty} alt="" />
+  
+</div>        )}
       </Container>
-      <Footer />
+      <Footer/>
     </div>
   );
 }
