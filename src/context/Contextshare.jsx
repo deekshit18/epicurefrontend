@@ -4,6 +4,7 @@ export const editresrespcon=createContext()
 export const isauthtokencontext=createContext()
 export const isadmincontext=createContext()
 export const userconc=createContext()
+export const userprofileres=createContext()
 
 
 function Contextshare({children}) {
@@ -11,9 +12,12 @@ function Contextshare({children}) {
     const [istokenres,setistokenres]=useState(false)
     const [isadminres,setisadminres]=useState(false)
     const [userc,setuserc]=useState("")
+    const [userprofile,setuserprofile]=useState({})
 
   return (
     <>
+        <userprofileres.Provider value={{userprofile,setuserprofile}}>
+
     <editresrespcon.Provider value={{editresppcon,seteditrespcon}}>
     <isauthtokencontext.Provider value={{istokenres,setistokenres}}>
     <isadmincontext.Provider value={{isadminres,setisadminres}}>
@@ -26,7 +30,8 @@ function Contextshare({children}) {
 </isauthtokencontext.Provider>
 
     </editresrespcon.Provider>
-    
+    </userprofileres.Provider>
+
     </>
   )
 }

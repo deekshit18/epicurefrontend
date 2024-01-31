@@ -30,15 +30,12 @@ function Admindash({ recipes, allmesg, users }) {
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const [date, setDate] = useState(new Date());
-  const [openSidebar, setOpenSidebar] = useState(false);
 
   const handleDateChange = (newDate) => {
     setDate(newDate);
   };
 
-  const handleToggleSidebar = () => {
-    setOpenSidebar(!openSidebar);
-  };
+ 
 
   return (
     <Grid container spacing={2}>

@@ -4,7 +4,7 @@ import { deleterecipe, editprofile, userrecipe } from '../services/allapi';
 import { BASEURL } from '../services/baseurl';
 import Swal from 'sweetalert2';
 import Updaterc from '../components/Updaterc';
-import { editresrespcon } from '../context/Contextshare';
+import { editresrespcon, userprofileres } from '../context/Contextshare';
 import Messagebox from '../components/Messagebox';
 import Pheader from '../components/Pheader';
 import Logout from '../components/Logout';
@@ -16,6 +16,8 @@ import backg from "../back2.jpg";
 import empty from "../empty.png";
 
 function Profile() {
+  const {userprofile,setuserprofile}=useContext(userprofileres)
+
   const { editresppcon, seteditrespcon } = useContext(editresrespcon);
 
 
@@ -29,6 +31,8 @@ function Profile() {
   const [userdetails, setuserdetails] = useState([]);
   const [preview, setPreview] = useState("");
   const [isupdate, setisupdate] = useState(false);
+  const [issave, setissave] = useState(false);
+
   const [userdata, setuserdata] = useState({
     username: "",
     email: "",
@@ -70,6 +74,7 @@ function Profile() {
   useEffect(() => {
     if (userdata.profile) {
       setPreview(URL.createObjectURL(userdata.profile));
+      setissave(true)
     } else {
       setPreview("");
     }
@@ -104,7 +109,9 @@ function Profile() {
             title: 'Profile Photo',
             text: 'Updated'
           });
-          setisupdate(true);
+          setuserprofile(result.data)
+            setisupdate(true);
+            setissave(false)
         }
       } else {
         const reqheader = {
@@ -115,6 +122,8 @@ function Profile() {
         if (result.status === 200) {
           sessionStorage.setItem("existinguser", JSON.stringify(result.data));
           setisupdate(true);
+          setuserprofile(result.data)
+
         }
       }
     }
@@ -149,11 +158,11 @@ function Profile() {
                     />
                     {
                       existingimage === "" ?
-                        <img style={{ width: "150px", height: "150px" }} src={preview ? preview : addpro} className='rounded-circle justify-content-center' alt="" />
-                        : <img style={{ width: "150px", height: "150px" }} src={preview ? preview : `${BASEURL}/uploads/${existingimage}`} className='rounded-circle justify-content-center' alt="" />
+                        <img  src={preview ? preview : addpro} className='rounded-circle justify-content-center w-100' alt="" />
+                        : <img  src={preview ? preview : `${BASEURL}/uploads/${existingimage}`} className='rounded-circle justify-content-center w-100' alt="" />
                     }
                   </label>
-                { preview ? <button class="bookmarkBtn m-3" onClick={handlepupdate}>
+                { issave ? <button class="bookmarkBtn mx-auto" onClick={handlepupdate}>
   <span class="IconContainer">
     <svg viewBox="0 0 384 512" height="0.9em" class="icon">
       <path
@@ -164,13 +173,14 @@ function Profile() {
   <p class="text mt-3">Save</p>
 </button>:null}
                 </Col>
+                <Col md={1}></Col>
                 <Col md={3}>
-                  <div className='mt-2'>
+                <div className='mt-2'>
                     <h1 style={{  color: 'red' }}>{userdetails.username}</h1>
                     <h5 style={{ color: 'black' }}>{userdetails.email}</h5>
                   </div>
                 </Col>
-                <Col md={3}>
+                <Col md={2}>  
                   <div className='mt-2'>
                     <CountUp end={userrecipes.length} duration={2} separator="," className='fs-1 ' style={{ color: 'red' }} />
                     <h5 style={{  color: 'black' }}>Posts</h5>
@@ -205,7 +215,7 @@ function Profile() {
                 </Button>
               </Row>
               {/* Food Image */}
-              <Row>
+              <Row >
                 <Col md={4}>
                   <div>
                   <h2 className='text-danger text-center mb-1'>{item.fname}</h2>
@@ -217,7 +227,7 @@ function Profile() {
                 {/* Ingredients */}
                 <Col md={4}>
                   <div>
-                    <h5>Ingredients:</h5>
+                    <h4>Ingredients:</h4>
                     <strong className='text-dark'>{item.ingredients}</strong>
                   </div>
                 </Col>
@@ -225,7 +235,7 @@ function Profile() {
                 {/* Instructions */}
                 <Col md={4}>
                   <div>
-                  <h5>Instructions:</h5>
+                  <h4>Instructions:</h4>
 
                     <strong className='text-dark'>{item.instructions}</strong>
                   </div>

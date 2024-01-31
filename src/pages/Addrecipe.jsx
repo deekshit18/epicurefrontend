@@ -4,7 +4,7 @@ import backg from "../back2.jpg";
 
 function Addrecipe() {
   return (
-    <div style={{backgroundImage: `url(${backg})`,height:"100vh"}}><Addrec/></div>
+    <div style={{backgroundImage: `url(${backg})`,minHeight:"100vh"}}><Addrec/></div>
   )
 }
 

@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Offcanvas, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
 import { BASEURL } from '../services/baseurl';
 import nopro from '../noprof.png'
 import backg from "../back2.jpg";
+import { userprofileres } from '../context/Contextshare';
 
 function Sidebar() {
+  const {userprofile,setuserprofile}=useContext(userprofileres)
+
   const [showOffcanvas, setShowOffcanvas] = useState(false);
   const [userdetails, setuserdetails] = useState({});
 
@@ -15,7 +18,7 @@ function Sidebar() {
   };
   useEffect(() => {
     setuserdetails(JSON.parse(sessionStorage.getItem("existinguser")));
-  }, []);
+  }, [userprofile]);
   return (
     <>
       <Button variant="outline-light" onClick={handleToggle} className="bn54 ms-3">

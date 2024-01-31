@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import './About.css'; // Rename the CSS file
 import recchef from '../recchef.jpg';
-import chef1 from '../chef1.jpg';
+import chef1 from '../hchef1.jpg';
 import recipe1 from '../recipe3.jpg';
 import hire from '../hire.jpg';
 import hire1 from '../hire2.jpg';
