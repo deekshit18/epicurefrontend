@@ -101,21 +101,21 @@ function Items() {
           <Row className="justify-content-center m-3 ">
             {allrecipes?.length > 0 ? allrecipes?.map((item) => (
               <Col data-aos="zoom-in" md={3} key={item._id} className='rounded m-4 bg-light' style={{
-                border: '4px solid #FFD700',
+                border: '4px solid #0099ff',
                 boxShadow: 'rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset',
               }}>
                 {/* Profile Section */}
-                <Row className='mb-2' style={{ borderBottom: '4px solid #FFD700', background: "#FFD700", color: "red" }}>
+                <Row className='mb-2' style={{ borderBottom: '4px solid #0099ff', background: "#0099ff", color: "red" }}>
                   <Col md={12} className='mb-2 mt-2 d-flex align-items-center '>
                     <img
                       src={item.profiles ? `${BASEURL}/uploads/${item.profiles}` : nopro}
                       alt="Profile Photo"
                       className="img-fluid rounded-circle"
-                      style={{ border: '2px solid yellow', width: "60px", height: "60px" }}
+                      style={{ border: '2px solid white', width: "60px", height: "60px" }}
                     />
                     <div className='ms-4'>
-                      <h3 className='text-dark'>{item.uname}</h3>
-                      <span className=''>{item.uemail}</span>
+                      <h3 className='text-light'>{item.uname}</h3>
+                      <span className='text-light'>{item.uemail}</span>
                     </div>
                   </Col>
                 </Row>
@@ -130,7 +130,7 @@ function Items() {
                 {/* Recipe Details */}
                 <Row className='mt-2'>
                   <Col md={12}>
-                    <h3 className='text-danger'>{item.fname}</h3>
+                    <h3 className='' style={{color:"#0099ff"}}>{item.fname}</h3>
                   </Col>
                 </Row>
   
@@ -155,9 +155,9 @@ function Items() {
                 </Accordion>
   
                 {/* Message Component */}
-                <Row className='justify-content-center bottom-end m-1' style={{bottom:0}}>
+                <Row className='justify-content-center bottom-end m-1 ' style={{bottom:0}}>
 {
-                isadminres?<button class="noselect dltbut p-2" onClick={() => handledelete(item._id)}><span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
+                isadminres?<button className="noselect dltbut p-2 " onClick={() => handledelete(item._id)}><span class="text">Delete</span><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"></path></svg></span></button>
   :<Message resp={item.uemail} usp={userprofiles} />}
                 </Row>
                 {/* <Row className="justify-content-between m-1" style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
