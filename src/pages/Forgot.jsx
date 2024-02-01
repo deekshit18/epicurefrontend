@@ -7,12 +7,12 @@ import Swal from 'sweetalert2';
 import { editprofile } from '../services/allapi';
 import backg from "../back2.jpg";
 import Pheader from '../components/Pheader';
-import { isadmincontext } from '../context/Contextshare';
-
+import { useNavigate } from 'react-router-dom';
 
 function Forgot() {
-  const { isadminres, setisadminres } = useContext(isadmincontext);
   const [userdetails, setuserdetails] = useState({});
+  const navigate = useNavigate();
+
   const [userdata, setuserdata] = useState({
     username: "",
     email: "",
@@ -20,14 +20,18 @@ function Forgot() {
     newPassword: "",
     profile: ""
   });
+  const [passwordValidation, setPasswordValidation] = useState({
+    oldPassword: true,
+    newPassword: true,
+    newPasswordLabel: ""
+  });
 
   useEffect(() => {
     setuserdetails(JSON.parse(sessionStorage.getItem("existinguser")));
   }, []);
 
   const handlePasswordChange = async () => {
-    const {  oldPassword, newPassword } = userdata;
-
+    const { oldPassword, newPassword } = userdata;
     if (!oldPassword || !newPassword) {
       Swal.fire({
         icon: 'info',
@@ -43,14 +47,35 @@ function Forgot() {
         title: 'Oops...',
         text: 'Old password does not match the current password.'
       });
+      setPasswordValidation({ ...passwordValidation, oldPassword: false });
+      return;    }
+    // Validate old password
+   
+
+    // Validate new password using regular expression
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    if (!passwordRegex.test(newPassword)) {
+      setPasswordValidation({
+        ...passwordValidation,
+        newPassword: false,
+        newPasswordLabel: "Password must be at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character."
+      });
       return;
     }
+else{
+    // Clear validation messages
+    setPasswordValidation({
+      oldPassword: true,
+      newPassword: true,
+      newPasswordLabel: ""
+    });
 
     const reqbody = new FormData();
     reqbody.append("username", userdetails.username);
     reqbody.append("email", userdetails.email);
     reqbody.append("password", newPassword);
     reqbody.append("profile", userdetails.profile);
+
     const token = sessionStorage.getItem("token");
     const reqheader = {
       "Content-Type": "multipart/form-data",
@@ -66,58 +91,61 @@ function Forgot() {
         title: 'Password',
         text: 'Updated'
       });
+      navigate('/');
+
     }
-  };
+  }}
 
   return (
-    <div         style={{backgroundImage: `url(${backg})`, minHeight: '100vh' }}
-    >
-      <Pheader/>
+    <div style={{ backgroundImage: `url(${backg})`, minHeight: '100vh' }}>
+      <Pheader />
       <Grid
         container
         spacing={0}
         direction="column"
         alignItems="center"
         justifyContent="center"
-        style={{minHeight: '80vh'}}
+        style={{ minHeight: '80vh' }}
       >
         <Grid item xs={12} md={6} lg={12} className='m-1'>
-            <Box
-              sx={{
-                backgroundColor: 'rgba(255, 255, 255, 0.8)',
-                padding: '20px',
-                borderRadius: '8px',
-                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                width: '100%',
-                maxWidth: '100%',
-              }}
-            >
-              {/* <h2 >Change Password</h2> */}
-              <TextField
-                label="Old Password"
-                type="password"
-                value={userdata.oldPassword}
-                onChange={(e) => setuserdata({ ...userdata, oldPassword: e.target.value })}
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="New Password"
-                type="password"
-                value={userdata.newPassword}
-                onChange={(e) => setuserdata({ ...userdata, newPassword: e.target.value })}
-                fullWidth
-                margin="normal"
-              />
+          <Box
+            sx={{
+              backgroundColor: 'rgba(255, 255, 255, 0.8)',
+              padding: '20px',
+              borderRadius: '8px',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+              width: '100%',
+              maxWidth: '100%',
+            }}
+          >
+            <TextField
+              label="Old Password"
+              type="password"
+              value={userdata.oldPassword}
+              onChange={(e) => setuserdata({ ...userdata, oldPassword: e.target.value })}
+              fullWidth
+              margin="normal"
+              error={!passwordValidation.oldPassword}
+              helperText={!passwordValidation.oldPassword && "Please enter the old password."}
+            />
+            <TextField
+              label="New Password"
+              type="password"
+              value={userdata.newPassword}
+              onChange={(e) => setuserdata({ ...userdata, newPassword: e.target.value })}
+              fullWidth
+              margin="normal"
+              error={!passwordValidation.newPassword}
+              helperText={!passwordValidation.newPassword && passwordValidation.newPasswordLabel}
+            />
             <div className='text-center m-1'>
-                <Button className='' variant="contained" onClick={handlePasswordChange}>
-                  Change Password
-                </Button>
+              <Button className='' variant="contained" onClick={handlePasswordChange}>
+                Change Password
+              </Button>
             </div>
-            </Box>
+          </Box>
         </Grid>
-      </Grid>       
-  
+      </Grid>
     </div>
   );
 }

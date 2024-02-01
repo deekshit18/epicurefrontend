@@ -20,7 +20,7 @@ function Home() {
     if(sessionStorage.getItem("token")) {
       setlog(true)
       setistokenres(true)
-      if(JSON.parse(sessionStorage.getItem("existinguser")).email==="epicurehub@gmail.com" && JSON.parse(sessionStorage.getItem("existinguser")).password==="Admin@123") {
+      if(JSON.parse(sessionStorage.getItem("existinguser")).type==="admin") {
         setadmin(true)
         setisadminres(true)
       }

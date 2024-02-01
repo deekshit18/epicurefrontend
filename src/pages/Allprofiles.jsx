@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { alluser } from '../services/allapi';
+import { alluser, deleteuser } from '../services/allapi';
 import backg from "../back2.jpg";
 
 import {
@@ -20,6 +20,7 @@ import {
   ListItemText,
   Divider,
   TextField,
+  ButtonBase,
 } from '@mui/material';
 import { BASEURL } from '../services/baseurl';
 import { Dashboard, MailOutline, PeopleAlt, Receipt, Menu as MenuIcon } from '@mui/icons-material';
@@ -32,6 +33,7 @@ import { isadmincontext } from '../context/Contextshare';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Adminside from '../components/Adminside';
+import { Button } from 'bootstrap';
 function Allprofiles() {
   const { isadminres, setisadminres } = useContext(isadmincontext);
 
@@ -91,6 +93,16 @@ console.log(uspp);
       user.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handledelete = async (id) => {
+    const token = sessionStorage.getItem("token");
+    const reqheader = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    };
+    await deleteuser(id, reqheader);
+    getalluserss();
+  };
+
   return (
 <div style={{backgroundImage: `url(${backg})`,minHeight:"100vh"}}>
   
@@ -111,7 +123,7 @@ console.log(uspp);
         {/* User Cards */}
           <Grid container spacing={2} className=''>
           {filteredUsers
-              .filter(user => user.email !== 'epicurehub@gmail.com') // Exclude admin user
+              .filter(user => user.type !== 'admin') // Exclude admin user
               .map((user) => (            <Grid item key={user.id} xs={12} sm={6} md={4} lg={3} data-aos="fade-up"
              
       >
@@ -121,9 +133,11 @@ console.log(uspp);
                     title={user.username}
                     subheader={user.email}
                   />
-                  <CardContent>
+                  <CardContent className='d-flex' style={{justifyContent:"space-between"}}>
                     <Typography variant="body2" color="textSecondary" component="p">
                                 <Message resp={user.email} usp={uspp} />      </Typography>
+                                <Typography variant="body2" color="textSecondary" component="p">
+                               <ButtonBase onClick={() => handledelete(user._id)}> <i class="fa-solid fa-trash-can text-danger"></i></ButtonBase>   </Typography>
                   </CardContent>
                 </Card>
               </Grid>

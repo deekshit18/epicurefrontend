@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Button, Offcanvas, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logout from './Logout';
-import { BASEURL } from '../services/baseurl';
 import nopro from '../noprof.png'
 import backg from "../back2.jpg";
 import { userprofileres } from '../context/Contextshare';
+import { BASEURL } from '../services/baseurl';
 
 function Sidebar() {
   const {userprofile,setuserprofile}=useContext(userprofileres)
@@ -36,8 +36,8 @@ function Sidebar() {
               <Image
                 src={userdetails.profile ? `${BASEURL}/uploads/${userdetails.profile}` : nopro}
                 alt="Profile"
-                roundedCircle
-                className=""
+                
+                className="rounded-circle"
                 style={{ width: "120px", height: "120px" }}
               />
             </Link>
@@ -119,9 +119,7 @@ function Sidebar() {
           </Link>
           <hr />
           {/* Logout Button */}
-          <div className='text-center'>
-            <Logout />
-          </div>
+          <div style={{marginLeft:"40%"}}> <Logout /></div>
         </Offcanvas.Body>
       </Offcanvas>
     </>

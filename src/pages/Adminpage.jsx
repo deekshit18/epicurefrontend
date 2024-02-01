@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Admindash from '../components/Admindash';
 import { allmessage, allrecipe, alluser } from '../services/allapi';
+import Adminside from '../components/Adminside';
 
 function AdminPage() {
   const [userdetails, setuserdetails] = useState({});
@@ -73,7 +74,7 @@ console.log(users);
   }, []);
   return (
    <>
-      
+       <Adminside/>
      <Admindash recipes={allrecipes} allmesg={getmesg} users={users}/>
   
    </>

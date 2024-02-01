@@ -14,6 +14,7 @@ function Authentication({ reg }) {
     username: '',
     email: '',
     password: '',
+    type:"user"
   });
   const navigate = useNavigate();
 

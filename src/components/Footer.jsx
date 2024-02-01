@@ -14,14 +14,15 @@ function Footer() {
   return (
     <footer className="foot text-dark py-5">
       <Container>
+      {istokenres?  
         <Grid container spacing={3}>
-          {/* Logo */}
-          <Grid item xs={12} lg={12}>
+           
+          <Grid  xs={12} lg={12}>
             <img src={icon} alt="EpicureHub Logo" className="img-fluid mb-3 w-25" />
           </Grid>
 
-         {istokenres?
-         <>
+         
+       
             <Divider orientation="vertical" flexItem sx={{ backgroundColor: '#fff', height: '100%' }} />
   
             <Grid item xs={12} lg={3}>
@@ -33,18 +34,18 @@ function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/recipes" className="text-light">
+                  <Link to="/items" className="text-light">
                     Recipes
                   </Link>
                 </li>
                 <li>
                   <Link to="/addrecipe" className="text-light">
-                    Chefs
+                    Add Recipe
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-light">
-                    Contact
+                  <Link to="/mesg" className="text-light">
+                    Message
                   </Link>
                 </li>
               </ul>
@@ -80,9 +81,9 @@ function Footer() {
             {/* // Feedback */}
               <Grid item xs={12} lg={4}>
                 <Feedback />
-              </Grid></>
-        :null}
-          </Grid>
+              </Grid>
+        
+          </Grid>:null}
   
           {/* Horizontal Rule */}
           <Divider className="mt-4 mb-3" />

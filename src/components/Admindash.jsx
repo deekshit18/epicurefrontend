@@ -1,17 +1,14 @@
 import React, {  useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Avatar, Typography, Divider, IconButton, Box, Grid, Paper, Button, AppBar, Toolbar } from '@mui/material';
-import { Dashboard, Receipt, Notifications, PeopleAlt, LocalPizza, MailOutline, Event, Menu } from '@mui/icons-material';
+import {  Typography,  Box, Grid, Paper} from '@mui/material';
+import {  PeopleAlt, LocalPizza, MailOutline } from '@mui/icons-material';
 import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, LineChart, Line } from 'recharts';
 import 'react-calendar/dist/Calendar.css';
 import { Container } from 'react-bootstrap';
 import CountUp from 'react-countup';
-import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Messagebox from './Messagebox';
-import Logout from './Logout';
-import Adminside from './Adminside';
+
 
 function Admindash({ recipes, allmesg, users }) {
   useEffect(() => {
@@ -40,7 +37,7 @@ function Admindash({ recipes, allmesg, users }) {
   return (
     <Grid container spacing={2}>
       
-      <Adminside/>
+     
       {/* Main Content */}
       <Grid item xs={12} md={12} lg={12}>
         <Container>

@@ -131,7 +131,7 @@ function Adminside() {
               </Link>
             </List>
           </List>
-          <Logout />
+         <div className='mx-auto'> <Logout /></div>
         </Drawer>
       </Grid>
     </>

@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Addrecipe from './pages/Addrecipe';
 import Items from './pages/Items';
 import Profile from './pages/Profile';
-import { isauthtokencontext } from './context/Contextshare';
+import { isadmincontext, isauthtokencontext } from './context/Contextshare';
 import { useContext } from 'react';
 import Messenger from './pages/Messenger';
 import Adminpage from './pages/Adminpage';
@@ -14,17 +14,18 @@ import Forgot from './pages/Forgot';
 
 function App() {
   const {istokenres,setistokenres}=useContext(isauthtokencontext)
+  const { isadminres, setisadminres } = useContext(isadmincontext);
 
   return (
     <div className="App">
 <Routes>
   <Route path="/" element={  <Home/>
 }></Route>
-<Route path="/adminpro" element={  <Allprofiles/>
+<Route path="/adminpro" element={isadminres?  <Allprofiles/>:<Home/>
 }></Route>
   <Route path="/login" element={  <Authntication/>
 }></Route>
-  <Route path="/addrecipe" element={ istokenres? <Addrecipe/>:<Home/>
+  <Route path="/addrecipe" element={ istokenres?!isadminres? <Addrecipe/>:<Home/>:<Home/>
 }></Route>
   {/* <Route path="/recipes" element={istokenres?  <Recipes/> : <Home/> */}
 {/* }></Route> */}
@@ -32,9 +33,9 @@ function App() {
 }></Route>
 <Route path="/items" element={istokenres?  <Items/>:<Home/>
 }></Route>
-<Route path="/profile" element={ istokenres? <Profile/>:<Home/>}></Route>
+<Route path="/profile" element={ istokenres?!isadminres? <Profile/>:<Home/>:<Home/>}></Route>
 <Route path="/mesg" element={ istokenres? <Messenger/>:<Home/>}></Route>
-<Route path="/forgot" element={<Forgot/>}></Route>
+<Route path="/forgot" element={istokenres?!isadminres?<Forgot/>:<Home/>:<Home/>}></Route>
 
 {/* <Route path="/updaterec" element={  <Updaterec/>}></Route> */}
 

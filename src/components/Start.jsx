@@ -12,10 +12,10 @@ function Start({log}) {
     <div className='' style={{width:"100%",height:"100vh"}}>
 
       <Header log={log}/>
-    <Container>
-  <Row className='align-items-center'>   <Col sm={12} md={4}>
+    <Container >
+  <Row className='align-items-center'>   <Col className='text-center' sm={12} md={3}>
         
-        <img src={hmgif} alt="" style={{width:"70%"}}/>
+        <img src={hmgif} alt="" style={{width:"80%"}}/>
             </Col>
   
 <Col sm={12} md={2}></Col>
@@ -41,8 +41,8 @@ function Start({log}) {
 
 </Container>
 
-
- <div className='fixed-bottom'><Footer/></div></div> 
+<div className='fixed-bottom'><Footer/></div>
+ </div> 
 </>
   )
 }

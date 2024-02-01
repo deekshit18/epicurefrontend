@@ -69,3 +69,7 @@ export const alluser=async(reqheader)=>{
   //query parameter=path?key
     return  await commonapi('GET',`${BASEURL}/user/alluser`,"",reqheader)
   }
+  //dltuser
+  export const deleteuser=async(userid,reqheader)=>{
+    return  await commonapi('DELETE',`${BASEURL}/user/remove/${userid}`,{},reqheader)
+  }

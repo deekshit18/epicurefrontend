@@ -158,8 +158,8 @@ function Profile() {
                     />
                     {
                       existingimage === "" ?
-                        <img  src={preview ? preview : addpro} className='rounded-circle justify-content-center w-100' alt="" />
-                        : <img  src={preview ? preview : `${BASEURL}/uploads/${existingimage}`} className='rounded-circle justify-content-center w-100' alt="" />
+                        <img  src={preview ? preview : addpro} className='rounded-circle justify-content-center w-100' alt="pimg" />
+                        : <img  src={preview ? preview : `${BASEURL}/uploads/${existingimage}`} className='rounded-circle justify-content-center w-100' alt="pimg" />
                     }
                   </label>
                 { issave ? <button class="bookmarkBtn mx-auto" onClick={handlepupdate}>
