@@ -11,6 +11,8 @@ import Messenger from './pages/Messenger';
 import Adminpage from './pages/Adminpage';
 import Allprofiles from './pages/Allprofiles';
 import Forgot from './pages/Forgot';
+import Veg from './pages/Veg';
+import Nonveg from './pages/Nonveg';
 
 function App() {
   const {istokenres,setistokenres}=useContext(isauthtokencontext)
@@ -32,6 +34,8 @@ function App() {
   <Route path="/register" element={  <Authntication reg/>
 }></Route>
 <Route path="/items" element={istokenres?  <Items/>:<Home/>
+}></Route><Route path="/vegitems" element={istokenres?  <Veg/>:<Home/>
+}></Route><Route path="/nonvegitems" element={istokenres?  <Nonveg/>:<Home/>
 }></Route>
 <Route path="/profile" element={ istokenres?!isadminres? <Profile/>:<Home/>:<Home/>}></Route>
 <Route path="/mesg" element={ istokenres? <Messenger/>:<Home/>}></Route>

@@ -135,10 +135,11 @@ const handledelete = async (id) => {
 };
   return (
     <>
+
+<div className='maindiv' style={{ backgroundColor: backgroundColor, minHeight: '100vh' }}>
 {   
 isadminres?<Adminside/>:   <Pheader />
 }  
-<div className='maindiv' style={{ backgroundColor: backgroundColor, minHeight: '100vh' }}>
         <Container fluid>
           <Row className='ms-3 mb-5 me-3 p-3'>
             <Col md={6} className='mb-4'>

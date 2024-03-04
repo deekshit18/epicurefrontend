@@ -17,7 +17,7 @@ function Authentication({ reg }) {
     type:"user"
   });
   const navigate = useNavigate();
-
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const registerform = reg ? true : false;
 
   const isEmailValid = (email) => {
@@ -131,11 +131,9 @@ function Authentication({ reg }) {
     confirmPassword: false,
   });
 
-  // ... (previous code)
-
- 
-
-  // ... (previous code)
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   return (
     <div className="regbg d-flex align-items-center justify-content-center" style={{ minHeight: "100vh" }}>
@@ -151,7 +149,7 @@ function Authentication({ reg }) {
 
           <Col md={6} className="d-flex flex-column align-items-center justify-content-center">
             <h1 className="text-dark">EPICUREHUB</h1>
-            <h6 className="text-light">{registerform ? 'Sign Up to your Account' : 'Sign into Account'}</h6>
+            <h6 className="text-light">{registerform ? 'Sign Up to your Account' : 'Sign into Account'}<i class="fa-solid fa-eye justify-content-center text-dark ms-2" onClick={togglePasswordVisibility} ></i></h6>
 
             <div className="form-group w-75">
               {registerform && (
@@ -167,6 +165,7 @@ function Authentication({ reg }) {
                       onChange={(e) => setUserdata({ ...userdata, username: e.target.value })}
                       onFocus={() => setTouchedInputs({ ...touchedInputs, username: true })}
                     />
+
                     <label htmlFor="floatingInput">Username</label>
                     {(touchedInputs.username && !isUsernameValid(userdata.username)) && (
                       <div className="invalid-feedback">Username must be alphanumeric, 3-20 characters.</div>
@@ -194,7 +193,7 @@ function Authentication({ reg }) {
 
               <div className={`form-floating mb-3 ${touchedInputs.password && !isPasswordValid(userdata.password) ? 'focused' : ''}`}>
                 <input
-                  type="password"
+                  type={passwordVisible ? "text" : "password"} 
                   className={`form-control ${(!isPasswordValid(userdata.password) && touchedInputs.password) ? 'is-invalid' : ''}`}
                   id="floatingPassword"
                   placeholder="Password"
@@ -204,6 +203,7 @@ function Authentication({ reg }) {
                   onChange={(e) => setUserdata({ ...userdata, password: e.target.value })}
                   onFocus={() => setTouchedInputs({ ...touchedInputs, password: true })}
                 />
+
                 <label htmlFor="floatingPassword">Password</label>
                 {(touchedInputs.password && !isPasswordValid(userdata.password)) && (
                   <div className="invalid-feedback">
@@ -215,7 +215,7 @@ function Authentication({ reg }) {
               {registerform && (
                 <div className={`form-floating ${touchedInputs.confirmPassword && userdata.password !== cpass ? 'focused' : ''}`}>
                   <input
-                    type="password"
+                    type={passwordVisible ? "text" : "password"} 
                     className={`form-control ${userdata.password !== cpass && touchedInputs.confirmPassword ? 'is-invalid' : ''}`}
                     id="floatingPassword"
                     placeholder="Confirm Password"

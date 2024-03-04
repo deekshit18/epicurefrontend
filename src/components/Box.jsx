@@ -5,6 +5,9 @@ import box1 from '../prof.png';
 import box2 from '../takercp.png';
 import box3 from '../postrecipe.png';
 import box4 from '../Message-Transparent-File.png';
+import box5 from '../Vegan-Logo-Transparent.png';
+import box6 from '../non-veg-icon-29.png';
+
 import 'aos/dist/aos.css'; // Import the CSS file
 import AOS from 'aos';
 
@@ -48,6 +51,25 @@ function Box() {
             <div className='box' id='postNewBox'>
               <Image className='w-25' src={box3} alt="Image 3" />
               <h5 className='box-title'>Post New</h5>
+            </div>
+          </Link>
+        </Col>
+      </Row>
+
+      <Row className='p-5'>
+        <Col md={6} lg={6} data-aos='fade-right'>
+          <Link to="/vegitems">
+            <div className='box ' id='recipesBox'>
+              <Image className='w-25 m-3' src={box5} alt="Image 2" />
+              {/* <h5 className='box-title'></h5> */}
+            </div>
+          </Link>
+        </Col>
+        <Col md={6} lg={6} data-aos='fade-left'>
+          <Link to="/nonvegitems">
+            <div className='box' id='postNewBox'>
+              <Image className='w-25 m-1' src={box6} alt="Image 3" />
+              {/* <h5 className='box-title'>Non-veg</h5> */}
             </div>
           </Link>
         </Col>
